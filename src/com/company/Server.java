@@ -12,15 +12,15 @@ public class Server {
         try (Socket socket = serverSocket.accept();
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-            System.out.println("New connection accepted");
+            System.out.println("Новое соежинение");
             //получаем число
             String num;
             while ((num = in.readLine()) != null) {
                 //Получаем N-ное число
-                int fibonacciN = fibonacci(Integer.parseInt(num));
-                System.out.println("Send number to client: " + fibonacciN);
+                int fibonachiN = fibonachi(Integer.parseInt(num));
+                System.out.println("Отправляем номер пользователю: " + fibonachiN);
                 //Отправляем его клиенту
-                out.println(fibonacciN);
+                out.println(fibonachiN);
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -28,13 +28,13 @@ public class Server {
     }
 
     //Вычисление N-ного числа Фибоначчи до 46 значения
-    private static int fibonacci(int num) {
+    private static int fibonachi(int num) {
         if (num <= 0) {
             return 0;
         } else if (num == 1) {
             return 1;
         } else {
-            return fibonacci(num - 1) + fibonacci(num - 2);
+            return fibonachi(num - 1) + fibonachi(num - 2);
         }
     }
 }
